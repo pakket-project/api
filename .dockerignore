@@ -1,0 +1,12 @@
+.github
+.vscode
+.yarn
+assets
+docs
+node_modules
+.eslintignore
+.eslintrc.js
+.gitignore
+.prettierignore
+.prettierrc.js
+.yarnrc.yml
