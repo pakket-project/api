@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
-import { PackageController } from './package.controller';
+import { PackageResolver } from './package.resolver';
 
-@Module({ controllers: [PackageController] })
+@Module({
+  providers: [PackageResolver]
+})
 export class PackageModule {}
