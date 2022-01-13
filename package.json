@@ -13,6 +13,9 @@
   "engines": {
     "node": "16.13.2"
   },
+  "prisma": {
+    "schema": "src/modules/prisma/schema.prisma"
+  },
   "scripts": {
     "clean:dist": "sudo rm -rf dist/",
     "clean:node": "sudo rm -rf node_modules/",
@@ -38,6 +41,7 @@
     "@nestjs/graphql": "^9.1.2",
     "@nestjs/platform-express": "^8.0.6",
     "@nestjs/swagger": "^5.0.9",
+    "@prisma/client": "^3.8.0",
     "@types/express": "^4.17.13",
     "apollo-server-express": "^3.6.1",
     "chalk": "^4.1.2",

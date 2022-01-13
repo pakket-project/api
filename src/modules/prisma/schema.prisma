@@ -1,0 +1,62 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+// id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+// createdAt DateTime @default(now())
+// updatedAt DateTime @updatedAt
+
+enum Type {
+  INTEL
+  SILICON
+}
+
+model User {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  username  String    @unique @db.VarChar(32)
+  email     String    @unique
+  password  String
+  Packages  Package[]
+
+  @@map("user")
+}
+
+model Package {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  name        String    @unique
+  description String
+  license     String
+  homepage    String
+  popularity  Int
+  versions    Version[]
+  author      User      @relation(fields: [authorId], references: [id])
+  authorId    String    @db.Uuid
+
+  @@map("package")
+}
+
+model Version {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  version      String    @unique
+  type         Type[]
+  popularity   Int
+  binaryUrl    String
+  Package      Package   @relation(fields: [packageId], references: [id])
+  packageId    String    @db.Uuid
+  dependencies Version[] @relation("dependencies")
+  dependents   Version[] @relation("dependencies")
+
+  @@map("version")
+}

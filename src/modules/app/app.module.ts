@@ -1,4 +1,5 @@
 import { PackageModule } from '@modules/package/package.module';
+import { PrismaModule } from '@modules/prisma/prisma.module';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
@@ -12,6 +13,7 @@ import { AppController } from './app.controller';
       playground: true,
       autoSchemaFile: join(process.cwd(), 'schema.gql')
     }),
+    PrismaModule,
     PackageModule
   ]
 })
