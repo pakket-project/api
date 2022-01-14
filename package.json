@@ -31,12 +31,13 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch --preserveWatchOutput",
-    "start:debug": "nest start --debug 0.0.0.0:9229 --watch --preserveWatchOutput",
+    "start:debug": "nest start --debug --watch --preserveWatchOutput",
     "start:prod": "node dist/main"
   },
   "dependencies": {
     "@nestjs/cli": "^8.2.0",
     "@nestjs/common": "^8.0.6",
+    "@nestjs/config": "^1.1.6",
     "@nestjs/core": "^8.0.6",
     "@nestjs/graphql": "^9.1.2",
     "@nestjs/platform-express": "^8.0.6",
@@ -50,6 +51,7 @@
     "class-validator": "^0.13.2",
     "dayjs": "^1.10.7",
     "graphql": "^15",
+    "jsonwebtoken": "^8.5.1",
     "prisma": "^3.8.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
@@ -59,8 +61,10 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.18",
     "@tribecamp/eslint-config-base": "^1.1.2",
     "@tribecamp/eslint-config-typescript": "^1.2.2",
+    "@types/jsonwebtoken": "^8.5.7",
     "@types/node": "14.17.3",
     "@types/validator": "^13.7.1",
     "@typescript-eslint/eslint-plugin": "^4.28.3",

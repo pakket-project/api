@@ -7,8 +7,8 @@ import { Prisma, User } from '@prisma/client';
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getUser(id: string): Promise<User> {
-    return await this.prisma.user.findUnique({ where: { id } });
+  async getUser(where: Prisma.UserWhereUniqueInput): Promise<User> {
+    return await this.prisma.user.findUnique({ where });
   }
 
   async createUser(data: Prisma.UserCreateInput): Promise<User> {

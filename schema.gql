@@ -17,6 +17,7 @@ scalar DateTime
 
 type Query {
   user(id: ID!): UserModel!
+  me: UserModel!
 }
 
 type Mutation {
