@@ -1,3 +1,4 @@
+import { PrismaService } from '@modules/prisma/prisma.service';
 import { Field, ObjectType, Query, Resolver } from '@nestjs/graphql';
 
 @ObjectType()
@@ -8,8 +9,5 @@ export class test {
 
 @Resolver()
 export class PackageResolver {
-  @Query(() => test)
-  test() {
-    return { id: 'hoi' };
-  }
+  constructor(private prisma: PrismaService) {}
 }
