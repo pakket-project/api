@@ -12,7 +12,7 @@ generator client {
 // createdAt DateTime @default(now())
 // updatedAt DateTime @updatedAt
 
-enum Type {
+enum ArchType {
   INTEL
   SILICON
 }
@@ -24,7 +24,7 @@ model User {
   username  String    @unique @db.VarChar(32)
   email     String    @unique
   password  String
-  Packages  Package[]
+  packages  Package[]
 
   @@map("user")
 }
@@ -49,11 +49,11 @@ model Version {
   id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
-  version      String    @unique
-  type         Type[]
+  version      String
+  arch         ArchType
   popularity   Int
   binaryUrl    String
-  Package      Package   @relation(fields: [packageId], references: [id])
+  package      Package   @relation(fields: [packageId], references: [id])
   packageId    String    @db.Uuid
   dependencies Version[] @relation("dependencies")
   dependents   Version[] @relation("dependencies")

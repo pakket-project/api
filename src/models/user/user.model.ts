@@ -8,4 +8,6 @@ export class UserModel extends BaseModel {
 
   @Field()
   email: string;
+
+  // TODO: packages
 }

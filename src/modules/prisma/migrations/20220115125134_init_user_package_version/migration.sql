@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Type" AS ENUM ('INTEL', 'SILICON');
+CREATE TYPE "ArchType" AS ENUM ('INTEL', 'SILICON');
 
 -- CreateTable
 CREATE TABLE "user" (
@@ -34,7 +34,7 @@ CREATE TABLE "version" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "version" TEXT NOT NULL,
-    "type" "Type"[],
+    "arch" "ArchType" NOT NULL,
     "popularity" INTEGER NOT NULL,
     "binaryUrl" TEXT NOT NULL,
     "packageId" UUID NOT NULL,
@@ -56,9 +56,6 @@ CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "package_name_key" ON "package"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "version_version_key" ON "version"("version");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_dependencies_AB_unique" ON "_dependencies"("A", "B");

@@ -1,2 +1,2 @@
 export * from './user.model';
-export * from './user.create.input';
+export * from './inputs';
