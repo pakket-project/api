@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { User } from '@prisma/client';
 import { JwtPayload, sign, verify as verifyJWT } from 'jsonwebtoken';
-import { verify as verifyHash } from 'argon2';
+import { hash, verify as verifyHash } from 'argon2';
 
 @Injectable()
 export class AuthService {
@@ -11,6 +11,10 @@ export class AuthService {
 
   constructor(private readonly prisma: PrismaService, private readonly config: ConfigService) {
     this.jwtSecret = this.config.get('JWT_SECRET');
+  }
+
+  async hash(password: string): Promise<string> {
+    return await hash(password, { hashLength: 32 });
   }
 
   async verifyHash(password: string, hash: string): Promise<boolean> {

@@ -17,7 +17,7 @@ import { AppController } from './app.controller';
       isGlobal: true
     }),
     GraphQLModule.forRoot({
-      debug: process.env.NODE_ENV !== 'production',
+      debug: true,
       playground: true,
       autoSchemaFile: join(process.cwd(), 'schema.gql')
     }),

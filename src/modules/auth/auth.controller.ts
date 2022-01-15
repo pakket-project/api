@@ -27,7 +27,7 @@ export class AuthController {
   @Public()
   @Post('/login')
   async login(@Body() { password, username }: LoginDTO): Promise<string> {
-    const user = await this.userService.getUser({ username });
+    const user = await this.userService.get({ username });
 
     return await this.authService.generateJWT(user, password);
   }
