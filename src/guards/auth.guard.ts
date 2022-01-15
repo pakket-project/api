@@ -39,7 +39,7 @@ export class AuthGuard implements CanActivate {
     }
 
     // get token
-    const token = req.headers.authorization;
+    let token = req.headers.authorization;
 
     // debugging
     if (this.config.get('NODE_ENV') === 'development' && token === 'bypass') {
@@ -50,6 +50,9 @@ export class AuthGuard implements CanActivate {
     if (!token) {
       return false;
     }
+
+    // strip Bearer
+    token = token.replace('Bearer ', '');
 
     // verify jwt
     let jwt: JwtPayload;
