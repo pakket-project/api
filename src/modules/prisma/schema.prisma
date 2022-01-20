@@ -52,7 +52,7 @@ model Version {
   version      String
   arch         ArchType
   popularity   Int
-  binaryUrl    String
+  hash         String    @db.VarChar(64)
   package      Package   @relation(fields: [packageId], references: [id])
   packageId    String    @db.Uuid
   dependencies Version[] @relation("dependencies")

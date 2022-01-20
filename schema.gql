@@ -27,7 +27,6 @@ type VersionModel {
   version: String!
   arch: ArchType!
   popularity: Float!
-  binaryUrl: String!
 }
 
 enum ArchType {

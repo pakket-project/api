@@ -15,8 +15,5 @@ export class VersionModel extends BaseModel {
   @Field()
   popularity: number;
 
-  @Field()
-  binaryUrl: string;
-
   // TODO: package, dependencies and dependents
 }

@@ -47,6 +47,6 @@
     },
     "outDir": "dist/"
   },
-  "include": ["src/", "tools/scripts/src"],
+  "include": ["src/**/*", "tools/scripts/src/**/*"],
   "exclude": ["node_modules"]
 }
