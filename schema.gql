@@ -30,8 +30,8 @@ type VersionModel {
 }
 
 enum ArchType {
-  INTEL
-  SILICON
+  intel
+  silicon
 }
 
 type UserModel {
@@ -40,7 +40,14 @@ type UserModel {
   updatedAt: DateTime!
   username: String!
   email: String!
+  role: Role!
   packages: [PackageModel!]!
+}
+
+enum Role {
+  admin
+  trusted_user
+  user
 }
 
 type Query {
@@ -51,6 +58,7 @@ type Query {
 type Mutation {
   createUser(data: UserCreateInput!): UserModel!
   updateUser(data: UserUpdateInput!, id: ID!): UserModel!
+  updateMe(data: UserUpdateInput!): UserModel!
   deleteUser(id: ID!): UserModel!
   changePassword(data: UserUpdatePasswordInput!): UserModel!
 }

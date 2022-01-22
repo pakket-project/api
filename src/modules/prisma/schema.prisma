@@ -13,8 +13,14 @@ generator client {
 // updatedAt DateTime @updatedAt
 
 enum ArchType {
-  INTEL
-  SILICON
+  intel
+  silicon
+}
+
+enum Role {
+  admin
+  trusted_user
+  user
 }
 
 model User {
@@ -24,6 +30,7 @@ model User {
   username  String    @unique @db.VarChar(32)
   email     String    @unique
   password  String
+  role      Role      @default(user)
   packages  Package[]
 
   @@map("user")

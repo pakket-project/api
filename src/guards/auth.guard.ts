@@ -11,6 +11,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
+import { Role } from '@prisma/client';
 import { Request } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 
@@ -69,8 +70,32 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
+    // bind user object to request
     req.user = user;
 
+    const roles: Role = this.reflector.get('roles', context.getHandler());
+
+    // check roles
+    if (roles) {
+      if (roles === 'user') {
+        // user
+        return user.role === 'user' || user.role === 'trusted_user' || user.role === 'admin';
+      }
+
+      if (roles === 'trusted_user') {
+        // trusted user
+        return user.role === 'trusted_user' || user.role === 'admin';
+      }
+
+      if (roles === 'admin') {
+        // admin
+        return user.role === 'admin';
+      }
+
+      return false;
+    }
+
+    // no roles defined, allow all
     return true;
   }
 }
